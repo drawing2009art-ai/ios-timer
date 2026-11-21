@@ -11,6 +11,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Reset Capacitor config
+        run: |
+          rm -f capacitor.config.ts capacitor.config.js
+          echo '{"appId":"com.example.timer","appName":"Timer","webDir":"www","ios":{"contentInset":"never"}}' > capacitor.config.json
       - run: npm install
       - run: npx cap add ios
       - run: npx cap sync ios
